@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fitnes - registracija</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: #497ae1;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #00796b;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .linki {
+            text-align: center;
+            background: #003cbc;
+            padding: 20px 0;
+        }
+
+        .linki a {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .linki a:hover {
+            color: #0b23a9;
+            background: #ffffff;
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+
+        .input {
+            max-width: 400px;
+            background: #ffffff;
+            margin: 50px auto;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .registracijaText {
+            color: #003cbc;
+        }
+
+        .table2 {
+            width: 100%;
+            border-spacing: 10px 15px;
+            text-align: left;
+        }
+
+        .td1 {
+            text-align: left;
+            font-weight: bold;
+            width: 25%;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box; /* ensures padding is included in width */
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            border-color: #0b23a9;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        select:focus {
+            border-color: #0b23a9;
+            outline: none;
+        }
+
+        .gumb {
+            width: 100%; /* Same width as input fields */
+            background: #003cbc;
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 15px;
+            box-sizing: border-box; /* ensures padding doesn't affect width */
+        }
+
+        .gumb:hover {
+            background: #00116f;
+        }
+
+        /* Za manjše zaslone */
+        @media screen and (max-width: 480px) {
+            .linki a {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .input {
+                padding: 15px 20px;
+                margin: 25px 20px; /* Zgornji odmik: 20px, levi/desni: 15px */
+            }
+        }
+    </style>
+    <script>
+        function matchEMSO(event) {
+            var EMSO1 = document.getElementById("pEMSO").value.trim(); // Pridobi in odstrani presledke
+            var EMSO2 = document.getElementById("dEMSO").value.trim(); // Pridobi in odstrani presledke
+            
+            // Preveri, ali sta polji prazni
+            if (EMSO1 === "" || EMSO2 === "") {
+                alert("Obe polji EMŠO morata biti izpolnjeni.");
+                event.preventDefault(); // Prepreči pošiljanje obrazca
+                return;
+            }
+
+            // Preveri, ali sta vrednosti različni
+            if (EMSO1 !== EMSO2)
+            {
+                alert("EMŠO polji nista enaki!");
+                event.preventDefault(); // Prepreči pošiljanje obrazca
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="linki">
+        <a class="domov" href="/">Domov</a>
+        <a class="reglog" href="StranLogin.htm">Prijava</a>
+    </div>
+
+    <div class="input">
+        <h1 class="registracijaText">Registracija</h1>
+        <form method="post" action="Register.php" onsubmit="matchEMSO(event)">
+            <table class="table2">
+                <tr>
+                    <td class="td1">Ime:</td>
+                    <td><input type="text" name="FirstName" pattern="[A-Ža-ž]{1,13}" required></td>
+                </tr>
+                <tr>
+                    <td class="td1">Priimek:</td>
+                    <td><input type="text" name="LastName" pattern="[A-Ža-ž]{1,13}" required></td>
+                </tr>
+                <tr>
+                    <td class="td1">EMŠO:</td>
+                    <td><input type="text" name="EMSO" id="pEMSO" maxlength="13" pattern="[0-9]{13}" required></td>
+                </tr>
+                <tr>
+                    <td class="td1">Email:</td>
+                    <td><input type="text" name="Email" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required></td>
+                </tr>
+                <tr>
+                    <td class="td1">Aktiven:</td>
+                    <td>
+                        <select name="Aktiven">
+                            <option value="1 mesec">1 mesec</option>
+                            <option value="6 mesecev">6 mesecev</option>
+                            <option value="9 mesecev">9 mesecev</option>
+                            <option value="1 leto">1 leto</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">Telefon:</td>
+                    <td><input type="text" name="Telefon" maxlength="9" pattern="[0-9]{9}" required></td>
+                </tr>
+                <tr>
+                    <td class="td1">Potrdite EMŠO:</td>
+                    <td><input type="text" name="EMSOpotrdi" id="dEMSO" maxlength="13" pattern="[0-9]{13}" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="gumb" type="submit" name="submit" value="Registracija">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

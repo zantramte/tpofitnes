@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fitnes - prijava</title>
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: #497ae1;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #00796b;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Glava in navigacija */
+        .linki {
+            text-align: center;
+            background: #003cbc;
+            padding: 20px 0;
+        }
+
+        .linki a {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .linki a:hover {
+            color: #0b23a9;
+            background: #ffffff;
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+
+        /* Obrazec */
+        .input {
+            max-width: 400px;
+            background: #ffffff;
+            margin: 55px auto;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .loginText
+        {
+            color: #003cbc;
+        }
+
+        .table2 {
+            width: 100%;
+            border-spacing: 20px 15px; /* Dodan razmik med vrsticami */
+        }
+
+        .table2 td {
+            text-align: left;
+        }
+
+        .td1 {
+            font-weight: bold;
+            width: 15%; 
+        }
+
+        input[type="text"],
+        input[type="password"],
+        .gumb {
+            width: 100%; 
+            box-sizing: border-box; 
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 10px; 
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #0b23a9;
+            outline: none;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            border-color: #0b23a9;
+            outline: none;
+        }
+
+        .gumb {
+            background: #003cbc;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-align: center;
+        }
+
+        .gumb:hover {
+            background: #00116f;
+        }
+
+        /* Za mobilne naprave */
+        @media screen and (max-width: 480px) {
+            .linki a {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .input {
+                padding: 15px 20px;
+                margin: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="linki">
+        <a href="/">Domov</a>
+        <a href="StranRegister.htm">Registracija</a>
+    </div>
+
+    <div class="input">
+        <h1 class="loginText">Prijava</h1>
+        <form method="post" action="Login.php">
+            <table class="table2">
+                <tr>
+                    <td class="td1">Ime:</td>
+                    <td><input type="text" name="FirstName" pattern="[A-ža-ž]{1,13}" required></td>
+                </tr>
+                <tr>
+                    <td class="td1">Priimek:</td>
+                    <td><input type="text" name="LastName" pattern="[A-ža-ž]{1,13}" required></td>
+                </tr>
+                <tr>
+                    <td class="td1">EMŠO:</td>
+                    <td><input type="text" name="EMSO" maxlength="13" pattern="[0-9]{13}" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="gumb" type="submit" name="submit" value="Prijava">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
