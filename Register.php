@@ -22,14 +22,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Preveri, ali so polja prazna
     if (empty($FirstName) || empty($LastName) || empty($EMSO) || empty($Email) || empty($Aktiven) || empty($Telefon)) {
         $message = "Vsa polja morajo biti izpolnjena!";
+        echo "<script>
+        alert('$message');
+        window.location.href = 'StranRegister.htm'; // Preusmeritev na ustrezno stran (ali obdrži uporabnika na trenutni strani)
+    </script>";
     }
     // Preveri, ali je EMSO točno 13 števil
     elseif (!preg_match('/^\d{13}$/', $EMSO)) {
         $message = "EMŠO mora biti točno 13 števil!";
+        echo "<script>
+        alert('$message');
+        window.location.href = 'StranRegister.htm'; // Preusmeritev na ustrezno stran (ali obdrži uporabnika na trenutni strani)
+    </script>";
     }
     // Preveri, ali je email v pravilnem formatu
     elseif (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
         $message = "Napačen format e-pošte!";
+        echo "<script>
+        alert('$message');
+        window.location.href = 'StranRegister.htm'; // Preusmeritev na ustrezno stran (ali obdrži uporabnika na trenutni strani)
+    </script>";
     } else {
         // Preveri, ali uporabnik že obstaja
         $sql_check = "SELECT * FROM clan WHERE EMSO = ? OR Email = ? OR Telefon = ?";
