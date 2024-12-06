@@ -2,22 +2,19 @@
 // Povezava z bazo
 $conn = new mysqli("localhost", "tpofitnes_tposkupina", "fujsjelegenda", "tpofitnes_projekt");
 
-if ($conn->connect_error)
- {
+if ($conn->connect_error) {
     die("Povezava z bazo ni uspela: " . $conn->connect_error);
 }
 
 // Preveri, če je obrazec poslan z metodo POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") 
-{
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Preverjanje in čiščenje podatkov
     $FirstName = mysqli_real_escape_string($conn, htmlspecialchars($_POST["FirstName"]));
     $LastName = mysqli_real_escape_string($conn, htmlspecialchars($_POST["LastName"]));
-    $EMSO = $_POST["EMSO"]; // EMSO bo še vedno string za preverjanje dolžine
+    $EMSO = mysqli_real_escape_string($conn, htmlspecialchars($_POST["EMSO"]));
     
     // Preverjanje, ali so polja prazna
-    if (empty($FirstName) || empty($LastName) || empty($EMSO)) 
-    {
+    if (empty($FirstName) || empty($LastName) || empty($EMSO)) {
         // Obvestilo o napaki in preusmeritev
         echo "<script>
             alert('Vsa polja morajo biti izpolnjena!');
@@ -27,8 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
     // Preverjanje, ali EMSO vsebuje točno 13 števil
-    if (!preg_match('/^\d{13}$/', $EMSO))
-    {
+    if (!preg_match('/^\d{13}$/', $EMSO)) {
         // Obvestilo o napaki in preusmeritev
         echo "<script>
             alert('EMSO mora biti točno 13 števil!');
@@ -42,12 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $stmt = $conn->prepare($sql);
     
     // Preveri, ali je bilo pripravljeno
-    if ($stmt === false)
-     {
+    if ($stmt === false) {
         die("Napaka pri pripravi poizvedbe: " . $conn->error);
     }
     
-    $stmt->bind_param("ssi", $FirstName, $LastName, $EMSO);
+    $stmt->bind_param("sss", $FirstName, $LastName, $EMSO);
     $stmt->execute();
     
     // Preverite, če je bil uporabnik najden
@@ -55,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $st = $result->num_rows;
     
     if ($st > 0)
-     {
+    {
         session_start();
         $_SESSION["Ime"] = $FirstName;
         $_SESSION["Priimek"] = $LastName;
@@ -69,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         </script>";
         exit();
     } 
-
-    else 
+    
+    else
     {
         // Neuspešna prijava - JavaScript alert in preusmeritev
         echo "<script>
