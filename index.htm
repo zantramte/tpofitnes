@@ -10,19 +10,23 @@
             margin: 0;
             padding: 0;
             font-family: 'Roboto', Arial, sans-serif;
-            background: #497ae1;
             color: #fff;
             height: 100%; /* Make sure the body takes the full height */
             display: flex;
             flex-direction: column;
             overflow: hidden; /* Prevent scrollbars */
         }
-
-
         
+        body
+        {
+        background-image: url('Images/ozadje.jpg'); /* Pot do tvoje slike */
+            background-size: cover; /* Slika bo pokrila celoten zaslon */
+            background-position: center; /* Slika bo poravnana na sredini */
+            background-attachment: fixed; 
+        }
+
         /* Uvodni del */
         .hero {
-            background: #497ae1;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -45,44 +49,46 @@
             margin: 20px 0;
         }
 
-        /* Gumb za prijavo */
+        /* Gumbi za prijavo in registracijo v vrstici */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Razmik med gumbi */
+            margin-top: 30px;
+            width: 100%; /* Zagotovi, da gumbi zavzamejo širino razpoložljivega prostora */
+            max-width: 500px; /* Največja širina gumbov */
+        }
+
+        /* Gumb za registracijo */
         .cta-button {
-            background: #003cbc;
-            color: #fff;
+            width: 200px; /* Nastavimo širino gumbov */
             font-size: 1.2rem;
-            padding: 15px 40px;
+            padding: 12px 0; /* Nastavimo zgornji in spodnji rob za krajše gumbe */
             border-radius: 30px;
             text-decoration: none;
             transition: background 0.3s ease;
-            margin-top: 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button:hover {
-            background: #00116f;
-        }
-
-        /* Gumb na dnu strani */
-        .footer {
-            background-color: #003cbc;
             text-align: center;
-            padding: 20px;
-            margin-top: auto;
         }
 
-        .footer a {
-            color: #ffffff;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            color: #0b23a9;
+        /* Gumb za registracijo */
+        .cta-button.register {
             background: #fff;
-            padding: 5px 15px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
+            color: #003cbc;
+        }
+
+        .cta-button.register:hover {
+            background: #f2f2f2;
+        }
+
+        /* Gumb za prijavo */
+        .cta-button.login {
+            background: #001885;
+            color: #fff;
+        }
+
+        .cta-button.login:hover {
+            background: #00116f;
         }
 
         /* Odzivnost na mobilnih napravah */
@@ -97,7 +103,8 @@
 
             .cta-button {
                 font-size: 1rem;
-                padding: 12px 30px;
+                padding: 12px 0;
+                width: 160px; /* Manjša širina gumbov na mobilnih napravah */
             }
         }
     </style>
@@ -106,14 +113,12 @@
 
     <!-- Uvodni del -->
     <div class="hero">
-        <h1>Fitnes za vse</h1>
-        <p>Rezervirajte si svoje termine in se razgibajte še danes!</p>
-        <a href="StranRegister.htm" class="cta-button">Registracija</a>
-    </div>
-
-    <!-- Footer del (povezava za prijavo tudi na dnu strani) -->
-    <div class="footer">
-        <p>Že imate račun? <a href="StranLogin.htm">Prijavite se tukaj</a></p>
+         <h1>Bodite v top formi</h1>
+        <p>Izvrstne fitnes vadbe za vsakogar!</p>
+        <div class="button-container">
+            <a href="StranRegister.htm" class="cta-button register">Registracija</a>
+            <a href="StranLogin.htm" class="cta-button login">Prijava</a>
+        </div>
     </div>
 
 </body>
