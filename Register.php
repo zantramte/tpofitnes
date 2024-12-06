@@ -41,6 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result_check->num_rows > 0) {
             // Nastavi sporočilo o napaki
             $message = "Uporabnik z danimi podatki že obstaja. Poskusite z drugimi podatki.";
+             echo "<script>
+        alert('$message');
+        window.location.href = 'StranRegister.htm'; // Preusmeritev na ustrezno stran (ali obdrži uporabnika na trenutni strani)
+    </script>";
         } else {
             // Vstavi podatke v bazo
             $sql = "INSERT INTO clan (Ime, Priimek, EMSO, Email, Aktiven, Telefon) VALUES (?, ?, ?, ?, ?, ?)";
